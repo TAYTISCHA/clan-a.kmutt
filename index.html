@@ -4,74 +4,59 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ChemHub — สาย A</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <div class="screen active" id="loginScreen">
-  <div class="login-brand">
-    <div class="login-logo">Chem<span>Hub</span></div>
-    <div class="login-tag">🔬 ระบบฐานข้อมูลสายรหัส (สาย A)</div>
-  </div>
-
   <div class="login-box">
-    <h2>เข้าสู่ระบบนักศึกษา</h2>
-    
-    <div class="fg">
-      <label class="fl">STUDENT ID</label>
-      <input class="fi" id="l_sid" placeholder="ระบุรหัสนักศึกษา" autocomplete="username"/>
-    </div>
-    <div class="fg">
-      <label class="fl">HOUSE / LINE</label>
-      <input class="fi" id="l_house" placeholder="ระบุชื่อบ้านหรือสายรหัส" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()"/>
-    </div>
-    
-    <button class="btn btn-primary" id="loginBtn" onclick="doLogin()">เข้าใช้งาน</button>
-    
+    <div class="logo">Chem<span>Hub</span></div>
+    <p>สืบค้นข้อมูลสายรหัส A</p>
+    <div class="fg"><input class="fi" id="l_sid" placeholder="รหัสนักศึกษา"/></div>
+    <div class="fg"><input class="fi" id="l_house" placeholder="สายรหัส / บ้าน"/></div>
+    <button class="btn btn-primary" id="loginBtn" onclick="doLogin()">เข้าสู่ระบบ</button>
     <div class="err" id="err"></div>
-    <p class="session-note">* ระบบอนุญาตให้เข้าใช้งานได้เพียง 1 เครื่องต่อบัญชีเท่านั้น หากมีการเข้าซ้ำเครื่องเก่าจะถูกตัดการเชื่อมต่อ</p>
   </div>
 </div>
 
 <div class="screen" id="appScreen">
   <nav>
-    <div class="nav-left">
-      <div class="logo">
-        <div class="logo-icon">⚗️</div>
-        <div class="logo-text">Chem<span>Hub</span></div>
-      </div>
-      <div class="nav-badge" id="badge">Active Session</div>
-    </div>
+    <div class="nav-left"><strong>ChemHub</strong> <span id="roleBadge" class="badge"></span></div>
     <div class="nav-right">
-      <span class="nav-user" id="user"></span>
-      <button class="btn logout-btn" onclick="logout()">ออกจากระบบ</button>
+      <span id="userInfo"></span>
+      <button class="btn-sm" onclick="logout()">Logout</button>
     </div>
   </nav>
 
   <div class="app-body">
-    <div class="search-wrap">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="srch" placeholder="ค้นหาวิชา หรือรหัสวิชา…" oninput="render()"/>
+    <div class="toolbar">
+      <input type="text" id="srch" placeholder="ค้นหาวิชา..." oninput="render()"/>
+      <button id="addBtn" class="btn btn-primary" style="display:none" onclick="openAdd()">+ เพิ่มวิชา</button>
     </div>
-
-    <div class="tabs">
-      <button class="tab active" data-y="all" onclick="switchTab('all',this)">🔬 ทุกชั้นปี</button>
-      <button class="tab" data-y="1" onclick="switchTab('1',this)">ปี 1</button>
-      <button class="tab" data-y="2" onclick="switchTab('2',this)">ปี 2</button>
-      <button class="tab" data-y="3" onclick="switchTab('3',this)">ปี 3</button>
-      <button class="tab" data-y="4" onclick="switchTab('4',this)">ปี 4</button>
-    </div>
-
     <div class="grid" id="main"></div>
   </div>
 </div>
 
 <div class="overlay" id="detailOverlay">
-  <div class="dmodal" id="detailInner"></div>
+  <div class="modal" id="detailInner"></div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="overlay" id="addOverlay">
+  <div class="modal">
+    <h3>จัดการข้อมูลวิชา</h3>
+    <input type="hidden" id="f_id"/>
+    <input class="fi" id="f_code" placeholder="รหัสวิชา"/>
+    <input class="fi" id="f_name" placeholder="ชื่อวิชา"/>
+    <textarea class="fi" id="f_desc" placeholder="รายละเอียด"></textarea>
+    <select class="fi" id="f_year">
+        <option value="1">ปี 1</option><option value="2">ปี 2</option>
+        <option value="3">ปี 3</option><option value="4">ปี 4</option>
+    </select>
+    <button class="btn btn-primary" onclick="saveCourse()">บันทึก</button>
+    <button class="btn" onclick="closeModal('addOverlay')">ยกเลิก</button>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
