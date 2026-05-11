@@ -3,18 +3,26 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ChemHub — สาย A</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <title>ChemHub — สายรหัส A</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <div class="screen active" id="loginScreen">
   <div class="login-box">
-    <div class="logo">Chem<span>Hub</span></div>
-    <p>สืบค้นข้อมูลสายรหัส A</p>
-    <div class="fg"><input class="fi" id="l_sid" placeholder="รหัสนักศึกษา"/></div>
-    <div class="fg"><input class="fi" id="l_house" placeholder="สายรหัส / บ้าน"/></div>
+    <div class="brand">Chem<span>Hub</span></div>
+    <p class="sub-brand">ระบบฐานข้อมูลสายรหัส A</p>
+    
+    <div class="fg">
+      <label>STUDENT ID</label>
+      <input class="fi" id="l_sid" placeholder="ระบุรหัสนักศึกษา"/>
+    </div>
+    <div class="fg">
+      <label>HOUSE / LINE</label>
+      <input class="fi" id="l_house" placeholder="ระบุสายรหัส หรือชื่อบ้าน"/>
+    </div>
+    
     <button class="btn btn-primary" id="loginBtn" onclick="doLogin()">เข้าสู่ระบบ</button>
     <div class="err" id="err"></div>
   </div>
@@ -22,18 +30,24 @@
 
 <div class="screen" id="appScreen">
   <nav>
-    <div class="nav-left"><strong>ChemHub</strong> <span id="roleBadge" class="badge"></span></div>
+    <div class="nav-left">
+      <div class="logo">⚗️ Chem<span>Hub</span></div>
+      <span id="roleBadge" class="badge"></span>
+    </div>
     <div class="nav-right">
       <span id="userInfo"></span>
-      <button class="btn-sm" onclick="logout()">Logout</button>
+      <button class="logout-btn" onclick="logout()">ออกจากระบบ</button>
     </div>
   </nav>
 
   <div class="app-body">
     <div class="toolbar">
-      <input type="text" id="srch" placeholder="ค้นหาวิชา..." oninput="render()"/>
-      <button id="addBtn" class="btn btn-primary" style="display:none" onclick="openAdd()">+ เพิ่มวิชา</button>
+      <div class="search-box">
+        <input type="text" id="srch" placeholder="ค้นหารหัสวิชา หรือชื่อวิชา..." oninput="render()"/>
+      </div>
+      <button id="addBtn" class="btn btn-primary" style="display:none" onclick="openAdd()">+ เพิ่มวิชาใหม่</button>
     </div>
+
     <div class="grid" id="main"></div>
   </div>
 </div>
@@ -44,17 +58,23 @@
 
 <div class="overlay" id="addOverlay">
   <div class="modal">
-    <h3>จัดการข้อมูลวิชา</h3>
+    <h3 id="mTitle">จัดการข้อมูลวิชา</h3>
     <input type="hidden" id="f_id"/>
-    <input class="fi" id="f_code" placeholder="รหัสวิชา"/>
-    <input class="fi" id="f_name" placeholder="ชื่อวิชา"/>
-    <textarea class="fi" id="f_desc" placeholder="รายละเอียด"></textarea>
-    <select class="fi" id="f_year">
-        <option value="1">ปี 1</option><option value="2">ปี 2</option>
-        <option value="3">ปี 3</option><option value="4">ปี 4</option>
-    </select>
-    <button class="btn btn-primary" onclick="saveCourse()">บันทึก</button>
-    <button class="btn" onclick="closeModal('addOverlay')">ยกเลิก</button>
+    <div class="fg"><input class="fi" id="f_code" placeholder="รหัสวิชา (เช่น CH101)"/></div>
+    <div class="fg"><input class="fi" id="f_name" placeholder="ชื่อวิชา"/></div>
+    <div class="fg"><textarea class="fi" id="f_desc" placeholder="คำอธิบายวิชา/รายละเอียด"></textarea></div>
+    <div class="fg">
+      <select class="fi" id="f_year">
+        <option value="1">ชั้นปีที่ 1</option>
+        <option value="2">ชั้นปีที่ 2</option>
+        <option value="3">ชั้นปีที่ 3</option>
+        <option value="4">ชั้นปีที่ 4</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="saveCourse()">บันทึกข้อมูล</button>
+      <button class="btn btn-ghost" onclick="closeModal('addOverlay')">ยกเลิก</button>
+    </div>
   </div>
 </div>
 
