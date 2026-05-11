@@ -1,1 +1,103 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+    background:#f2f2f2;
+}
 
+.login-container{
+
+    width:350px;
+
+    background:white;
+
+    margin:100px auto;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+    box-sizing:border-box;
+}
+
+button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    background:#4285f4;
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.topbar{
+
+    background:#4285f4;
+
+    color:white;
+
+    padding:15px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.content{
+    padding:20px;
+}
+
+.upload-box{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+}
+
+.file-card{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+}
