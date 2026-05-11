@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
 
+  <meta charset="UTF-8">
+
+  <title>Dashboard</title>
+
+  <link rel="stylesheet"
+        href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+  <div>
+    ระบบชีทเรียน
+  </div>
+
+  <button onclick="logout()">
+    Logout
+  </button>
+
+</div>
+
+<div class="content">
+
+  <div class="upload-box">
+
+    <h2>Upload PDF</h2>
+
+    <input type="text"
+           id="year"
+           placeholder="ปี">
+
+    <input type="text"
+           id="semester"
+           placeholder="เทอม">
+
+    <input type="text"
+           id="subject"
+           placeholder="วิชา">
+
+    <input type="file"
+           id="file">
+
+    <button onclick="uploadFile()">
+      Upload
+    </button>
+
+  </div>
+
+  <h2>รายการไฟล์</h2>
+
+  <div id="file-list"></div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/upload.js"></script>
+
+</body>
+</html>
