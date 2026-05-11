@@ -226,7 +226,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,14,23,.92);backdrop-fil
     </div>
     <div class="nav-right">
       <span class="nav-user" id="user"></span>
-      <button class="btn" style="background:transparent;border:1px solid var(--border2);color:var(--muted2);padding:.4rem 1rem;font-size:.85rem" onclick="logout()">ออกจาก</button>
+      <button class="btn" style="background:transparent;border:1px solid var(--border2);color:var(--muted2);padding:.4rem 1rem;font-size:.85rem" onclick="logout()">ออกจากระบบ</button>
     </div>
   </nav>
 
@@ -603,8 +603,26 @@ async function delCourse(id) {
 
 function open2(id) { document.getElementById(id).classList.add('open'); }
 function close2(id) { document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.overlay').forEach(o => o.addEventListener('click', e => { if(e.target===o) o.classList.remove('open'); }));
-function toast(m) { const t = document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'),2800); }
+
+// ── ส่วนที่ต่อจากจุดที่ขาดหายไป ──
+document.querySelectorAll('.overlay').forEach(o => o.addEventListener('click', function(e) {
+  if (e.target === o) {
+    close2(o.id);
+  }
+}));
+
+// ฟังก์ชันสำหรับแสดงแจ้งเตือน (Toast)
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    t.classList.remove('show');
+  }, 2500);
+}
 </script>
 </body>
 </html>
