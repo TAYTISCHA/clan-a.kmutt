@@ -4,9 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ChemHub — สาย A</title>
-  
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -14,65 +12,40 @@
 <div class="screen active" id="loginScreen">
   <div class="login-brand">
     <div class="login-logo">Chem<span>Hub</span></div>
-    <div class="login-tag">🔬 คณะวิทยาศาสตร์ เคมี สาย A</div>
-  </div>
-
-  <div class="roles">
-    <button class="role-btn" onclick="selectRole('senior')">
-      <div class="role-icon">👨‍🏫</div>
-      <div class="role-label">รุ่นพี่</div>
-      <div class="role-sub">แก้ไขข้อมูล</div>
-    </button>
-    <button class="role-btn" onclick="selectRole('junior')">
-      <div class="role-icon">👨‍🎓</div>
-      <div class="role-label">รุ่นน้อง</div>
-      <div class="role-sub">ดูอย่างเดียว</div>
-    </button>
+    <div class="login-tag">🔬 ระบบฐานข้อมูลสายรหัส (สาย A)</div>
   </div>
 
   <div class="login-box">
-    <h2 id="title">เลือกบทบาทก่อนเข้าสู่ระบบ</h2>
-
-    <div id="seniorForm" style="display:none">
-      <div class="fg">
-        <label class="fl">USERNAME</label>
-        <input class="fi" id="l_user" placeholder="ชื่อผู้ใช้" autocomplete="username"/>
-      </div>
-      <div class="fg">
-        <label class="fl">PASSWORD</label>
-        <input class="fi" id="l_pass" type="password" placeholder="รหัสผ่าน" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
-      </div>
-      <button class="btn btn-primary" id="loginBtn" onclick="doLogin()">เข้าสู่ระบบ</button>
+    <h2>เข้าสู่ระบบนักศึกษา</h2>
+    
+    <div class="fg">
+      <label class="fl">STUDENT ID</label>
+      <input class="fi" id="l_sid" placeholder="ระบุรหัสนักศึกษา" autocomplete="username"/>
     </div>
-
-    <div id="juniorForm" style="display:none">
-      <div class="fg">
-        <label class="fl">รหัสผ่านรุ่น</label>
-        <input class="fi" id="l_jpass" type="password" placeholder="รหัสผ่านสำหรับรุ่นน้อง" onkeydown="if(event.key==='Enter')doLoginJunior()"/>
-      </div>
-      <button class="btn btn-gold" onclick="doLoginJunior()">เข้าดูข้อมูล</button>
+    <div class="fg">
+      <label class="fl">HOUSE / LINE</label>
+      <input class="fi" id="l_house" placeholder="ระบุชื่อบ้านหรือสายรหัส" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()"/>
     </div>
-
+    
+    <button class="btn btn-primary" id="loginBtn" onclick="doLogin()">เข้าใช้งาน</button>
+    
     <div class="err" id="err"></div>
+    <p class="session-note">* ระบบอนุญาตให้เข้าใช้งานได้เพียง 1 เครื่องต่อบัญชีเท่านั้น หากมีการเข้าซ้ำเครื่องเก่าจะถูกตัดการเชื่อมต่อ</p>
   </div>
 </div>
 
 <div class="screen" id="appScreen">
-  <div class="readonly-bar" id="roBar" style="display:none">
-    👀 โหมดอ่านอย่างเดียว — คุณสามารถดูข้อมูลและลิงก์ไฟล์ได้เท่านั้น
-  </div>
-
   <nav>
     <div class="nav-left">
       <div class="logo">
         <div class="logo-icon">⚗️</div>
         <div class="logo-text">Chem<span>Hub</span></div>
       </div>
-      <div class="nav-badge" id="badge"></div>
+      <div class="nav-badge" id="badge">Active Session</div>
     </div>
     <div class="nav-right">
       <span class="nav-user" id="user"></span>
-      <button class="btn" style="background:transparent;border:1px solid var(--border2);color:var(--muted2);padding:.4rem 1rem;font-size:.85rem" onclick="logout()">ออกจากระบบ</button>
+      <button class="btn logout-btn" onclick="logout()">ออกจากระบบ</button>
     </div>
   </nav>
 
@@ -91,58 +64,6 @@
     </div>
 
     <div class="grid" id="main"></div>
-  </div>
-</div>
-
-<div class="overlay" id="addOverlay">
-  <div class="modal">
-    <div class="modal-head">
-      <div>
-        <div class="modal-tag" id="mTag">NEW COURSE</div>
-        <div class="modal-title" id="mTitle">เพิ่มวิชาใหม่</div>
-      </div>
-      <button class="modal-close" onclick="close2('addOverlay')">✕</button>
-    </div>
-    <div class="modal-body">
-      <input type="hidden" id="f_id"/>
-      <div style="display:flex;gap:.85rem">
-        <div class="fg" style="flex:1">
-          <label class="fl">รหัสวิชา</label>
-          <input class="fi" id="f_code" placeholder="CH101"/>
-        </div>
-        <div class="fg" style="flex:2">
-          <label class="fl">ชื่อวิชา</label>
-          <input class="fi" id="f_name" placeholder="General Chemistry"/>
-        </div>
-      </div>
-      <div class="fg">
-        <label class="fl">คำอธิบาย</label>
-        <textarea class="fi" id="f_desc" placeholder="อธิบายเนื้อหาย่อๆ…" style="min-height:70px;resize:vertical;font-family:'Sarabun',sans-serif"></textarea>
-      </div>
-      <div style="display:flex;gap:.85rem">
-        <div class="fg" style="flex:1">
-          <label class="fl">ชั้นปี</label>
-          <select class="fi" id="f_year" style="padding:.7rem 1.1rem">
-            <option value="1">ปี 1</option>
-            <option value="2">ปี 2</option>
-            <option value="3">ปี 3</option>
-            <option value="4">ปี 4</option>
-          </select>
-        </div>
-        <div class="fg" style="flex:1">
-          <label class="fl">หน่วยกิต</label>
-          <input class="fi" id="f_credits" type="number" value="3" min="1" max="9"/>
-        </div>
-      </div>
-      <div class="fg">
-        <label class="fl">ไอคอน</label>
-        <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem" id="emojiRow"></div>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="close2('addOverlay')">ยกเลิก</button>
-      <button class="btn btn-primary" onclick="saveCourse()">บันทึก</button>
-    </div>
   </div>
 </div>
 
