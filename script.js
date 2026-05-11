@@ -1,4 +1,4 @@
-const API = 'https://script.google.com/macros/s/AKfycbyM6G8tEILpPi9E3FP-Uzh1HIoD20L6JSKu4TIWY4e3SwG-itvQJvqgf-rpJodzFQRd/exec';
+const API = 'https://script.google.com/macros/s/AKfycbyCnpdIFaLh9CUn56LSp3RihDtwdRGBlrm0Hm_4-Uu19hBvid0nAKkVoy2KrJcVZwrO/exec';
 let session = JSON.parse(localStorage.getItem('chem_session')) || null;
 let courses = [];
 
