@@ -1,66 +1,224 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
 
   <meta charset="UTF-8">
 
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>Dashboard</title>
 
   <link rel="stylesheet"
-        href="css/style.css">
+        href="css/dashboard.css">
 
 </head>
 
 <body>
 
-<div class="topbar">
+<!-- MOBILE TOPBAR -->
 
-  <div>
-    ระบบชีทเรียน
-  </div>
+<div class="mobile-topbar">
 
-  <button onclick="logout()">
-    Logout
+  <button class="menu-btn"
+          onclick="toggleSidebar()">
+
+    ☰
+
   </button>
 
+  <h2>Sheet Learning</h2>
+
 </div>
 
-<div class="content">
+<!-- SIDEBAR -->
 
-  <div class="upload-box">
+<div class="sidebar"
+     id="sidebar">
 
-    <h2>Upload PDF</h2>
+  <div class="logo">
 
-    <input type="text"
-           id="year"
-           placeholder="ปี">
-
-    <input type="text"
-           id="semester"
-           placeholder="เทอม">
-
-    <input type="text"
-           id="subject"
-           placeholder="วิชา">
-
-    <input type="file"
-           id="file">
-
-    <button onclick="uploadFile()">
-      Upload
-    </button>
+    Sheet Learning
 
   </div>
 
-  <h2>รายการไฟล์</h2>
+  <div class="menu">
 
-  <div id="file-list"></div>
+    <a href="#">
+      Dashboard
+    </a>
+
+    <a href="#">
+      Subjects
+    </a>
+
+    <a href="#">
+      Favorites
+    </a>
+
+    <a href="#">
+      Announcements
+    </a>
+
+    <a href="#">
+      Admin
+    </a>
+
+    <a href="#"
+       onclick="logout()">
+
+      Logout
+    </a>
+
+  </div>
 
 </div>
 
-<script src="js/config.js"></script>
+<!-- MAIN -->
+
+<div class="main">
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <div>
+
+      <h1>
+        Dashboard
+      </h1>
+
+      <p>
+        Welcome Back
+      </p>
+
+    </div>
+
+    <div class="profile">
+
+      A2 User
+
+    </div>
+
+  </div>
+
+  <!-- SEARCH -->
+
+  <div class="search-box">
+
+    <input type="text"
+           placeholder="Search files...">
+
+  </div>
+
+  <!-- STATS -->
+
+  <div class="stats-grid">
+
+    <div class="card">
+
+      <h3>
+        Files
+      </h3>
+
+      <p>
+        124
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>
+        Downloads
+      </h3>
+
+      <p>
+        1,245
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>
+        Subjects
+      </h3>
+
+      <p>
+        14
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- RECENT FILES -->
+
+  <div class="recent-section">
+
+    <h2>
+      Recent Files
+    </h2>
+
+    <div class="file-grid">
+
+      <div class="file-card">
+
+        <h3>
+          Calculus Midterm
+        </h3>
+
+        <p>
+          PDF File
+        </p>
+
+        <button>
+          Open
+        </button>
+
+      </div>
+
+      <div class="file-card">
+
+        <h3>
+          Physics Lecture
+        </h3>
+
+        <p>
+          PDF File
+        </p>
+
+        <button>
+          Open
+        </button>
+
+      </div>
+
+      <div class="file-card">
+
+        <h3>
+          Chemistry Notes
+        </h3>
+
+        <p>
+          PDF File
+        </p>
+
+        <button>
+          Open
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
 <script src="js/dashboard.js"></script>
-<script src="js/upload.js"></script>
 
 </body>
 </html>
