@@ -1,2 +1,2 @@
 const WEBAPP_URL =
-"PASTE_YOUR_WEBAPP_URL_HERE";
+"https://script.google.com/macros/s/AKfycbwiaILeMWFoVgfXuQT3Oqcy8fzyqtQkaFy9_8vCPx2Ee3t4MkQVU2zuJWRn-54YF5Pj/exec";
